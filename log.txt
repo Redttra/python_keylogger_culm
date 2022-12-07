@@ -7,5 +7,9 @@ Dec 6:
         - add only data you want to persistant database 
 
 Dec 7:
-
+    Added beginning code to gui file, creates a window and push button
     
+    Todo list:
+        - Add gui
+        - add gui for viewing the log, with good formatting
+        - add only data you want to persistant database 
