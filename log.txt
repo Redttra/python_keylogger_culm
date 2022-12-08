@@ -13,3 +13,10 @@ Dec 7:
         - Add gui
         - add gui for viewing the log, with good formatting
         - add only data you want to persistant database 
+
+Dec 7:
+    Added better base for gui code, added 3 buttons
+
+    Todo:
+        - add widget that opens up another window or possible shows it in the single window all the keylogged data
+        - sort keylogged data

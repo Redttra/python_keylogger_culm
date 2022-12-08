@@ -1,22 +1,31 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton
-from PyQt6.QtCore import Qt
 import sys
+from PyQt5.QtWidgets import *
  
+class PyQtLayout(QWidget):
+ 
+    def __init__(self):
+        super().__init__()
+        self.UI()
+ 
+    def UI(self):
+        Button1 = QPushButton('PyQt')
+        Button2 = QPushButton('Layout')
+        Button3 = QPushButton('Management')
+         
+        vbox = QVBoxLayout()
+        vbox.addWidget(Button1)
+        vbox.addWidget(Button2)
+        vbox.addWidget(Button3)
+ 
+        self.setLayout(vbox)
+        self.setGeometry(300, 300, 250, 150)
+        self.setWindowTitle('PyQt5 Layout')
+        self.show()
 
+def main():
+    app = QApplication(sys.argv)
+    window = PyQtLayout()
+    sys.exit(app.exec())
 
-def getSize():
-    sc = app.screens()[0]
-    screen_dim = sc.size()
-    return screen_dim 
-
-app = QApplication(sys.argv)
-
-scrn_dim = getSize()
-
-start_button = QPushButton('start')
-start_button.move(250, 250)
-start_button.show()
-
-
-sys.exit(app.exec())
-
+if __name__ == '__main__':
+   main()
