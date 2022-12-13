@@ -1,4 +1,5 @@
 import sys
+import listener as ls
 from PyQt5.QtWidgets import *
  
 class PyQtLayout(QWidget):
@@ -8,24 +9,26 @@ class PyQtLayout(QWidget):
         self.UI()
  
     def UI(self):
-        Button1 = QPushButton('PyQt')
-        Button2 = QPushButton('Layout')
-        Button3 = QPushButton('Management')
-         
+        Button1 = QPushButton('start')
+        Button1.clicked.connect(ls.proxy_start)
+        Button2 = QPushButton('stop')
+        Button2.clicked.connect(ls.stop_listener)
+        Button3 = QPushButton('display')
+    
         vbox = QVBoxLayout()
         vbox.addWidget(Button1)
         vbox.addWidget(Button2)
         vbox.addWidget(Button3)
  
         self.setLayout(vbox)
-        self.setGeometry(300, 300, 250, 150)
-        self.setWindowTitle('PyQt5 Layout')
+        self.setGeometry(500, 500, 500, 500)
+        self.setWindowTitle('PyLogger')
         self.show()
 
-def main():
+
+def start_gui():
     app = QApplication(sys.argv)
     window = PyQtLayout()
     sys.exit(app.exec())
 
-if __name__ == '__main__':
-   main()
+start_gui()

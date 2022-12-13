@@ -14,7 +14,7 @@ Dec 7:
         - add gui for viewing the log, with good formatting
         - add only data you want to persistant database 
 
-Dec 7:
+Dec 8:
     Added better base for gui code, added 3 buttons
 
     Todo:
