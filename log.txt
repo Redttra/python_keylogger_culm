@@ -20,3 +20,18 @@ Dec 8:
     Todo:
         - add widget that opens up another window or possible shows it in the single window all the keylogged data
         - sort keylogged data
+Dec 13:
+    Added connectivity from gui code to listener code
+
+    Todo:
+        - make program not crash when press start and stop
+        - add display log
+        - sort keylogged data
+Dec 14:
+    Fixed crashing bug whenever listener code was started via gui button
+
+    Todo:
+        - add display log
+        - sort keylogged data
+        - make gui look so much nicer
+    

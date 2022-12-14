@@ -32,3 +32,4 @@ def start_gui():
     sys.exit(app.exec())
 
 start_gui()
+listener.join()

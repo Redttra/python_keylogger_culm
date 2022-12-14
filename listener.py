@@ -1,5 +1,6 @@
 from pynput.keyboard import Key, Listener
 import logging
+import time
 global listener_exit
 listener_exit = False
 
@@ -19,6 +20,6 @@ def on_press(key):
 
 def start_listener():
     global listener_exit
+    listener = Listener(on_press=on_press)
     listener_exit = False
-    with Listener(on_press=on_press) as listener:
-        listener.join()
+    listener.start()
