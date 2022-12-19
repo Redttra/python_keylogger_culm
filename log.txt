@@ -34,4 +34,11 @@ Dec 14:
         - add display log
         - sort keylogged data
         - make gui look so much nicer
+Dec 19:
+    Worked on fixing crashing bug. Bug is the result of the listener thread being run instead of main thread and listener thread being run at the same time
+    Added display log
     
+    Todo:
+        - sort keylogged data
+        - make gui look so much nicer
+        

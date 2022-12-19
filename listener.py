@@ -19,7 +19,6 @@ def on_press(key):
 
 
 def start_listener():
-    global listener_exit
     listener = Listener(on_press=on_press)
-    listener_exit = False
     listener.start()
+    listener.join()
