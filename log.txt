@@ -41,4 +41,3 @@ Dec 19:
     Todo:
         - sort keylogged data
         - make gui look so much nicer
-        

@@ -2,7 +2,18 @@ import sys
 import listener as ls
 from PyQt6.QtWidgets import *
 from threading import *
+from PyQt6.QtCore import *
+
 sys.argv += ['-platform', 'windows:darkmode=2']
+
+
+class Worker(QRunnable):
+    def run(self):
+        ls.start_listener()
+    def end(self):
+        QApplication.processEvents() 
+    
+worker = Worker()
 
 class DisplayWindow(QWidget):
     
@@ -32,17 +43,19 @@ class PyQtLayout(QWidget):
 
     def __init__(self):
         super().__init__()
+        self.threadpool = QThreadPool()
+        print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
         self.disp_status = None
         self.UI()
  
     def UI(self):
         Button1 = QPushButton('start')
-        Button1.clicked.connect(self.start_operation)
+        Button1.clicked.connect(self.start_op)
         Button2 = QPushButton('stop')
-        Button2.clicked.connect(ls.stop_listener)
+        Button2.clicked.connect(worker.end)
         Button3 = QPushButton('display')
         Button3.clicked.connect(self.show_new_window)
-    
+
         vbox = QVBoxLayout()
         vbox.addWidget(Button1)
         vbox.addWidget(Button2)
@@ -53,15 +66,6 @@ class PyQtLayout(QWidget):
         self.setWindowTitle('PyLogger')
         self.show()
 
-    def start_operation(self):
-        ls.start_listener()
-
-    def listener_thread(self):
-        global t1
-        t1=Thread(target=self.start_operation)
-        t1.start()
-
-
     def show_new_window(self, checked):
         if self.disp_status is None:
             self.disp_status= DisplayWindow()
@@ -71,10 +75,13 @@ class PyQtLayout(QWidget):
             self.disp_status.close()  # Close window.
             self.disp_status = None 
 
+    def start_op(self):
+        self.threadpool.start(worker)
+        
+
 def start_gui():
     app = QApplication(sys.argv)
-    window = PyQtLayout()
+    window = PyQtLayout() 
     sys.exit(app.exec())
 
 start_gui()
-listener.join()
