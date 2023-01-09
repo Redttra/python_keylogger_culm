@@ -6,19 +6,21 @@ from PyQt6.QtCore import *
 
 sys.argv += ['-platform', 'windows:darkmode=2']
 
+global end_thread
+end_thread = False
 
 class Worker(QRunnable):
     def run(self):
         ls.start_listener()
-    def end(self):
-        QApplication.processEvents() 
     
 worker = Worker()
+thread = QThread
+worker.moveToThread(thread)
 
 class DisplayWindow(QWidget):
-    
     def __init__(self):
         super().__init__()
+
         layout = QVBoxLayout()
         self.label = QLabel("log file:")
         layout.addWidget(self.label)
@@ -35,7 +37,7 @@ class DisplayWindow(QWidget):
             self.text_edit()  # Close window.
             self.text_edit = None
         
-
+     
 
         self.setLayout(layout)
 
@@ -46,13 +48,14 @@ class PyQtLayout(QWidget):
         self.threadpool = QThreadPool()
         print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
         self.disp_status = None
+
         self.UI()
  
     def UI(self):
         Button1 = QPushButton('start')
         Button1.clicked.connect(self.start_op)
         Button2 = QPushButton('stop')
-        Button2.clicked.connect(worker.end)
+        #Button2.clicked.connect(print("2"))
         Button3 = QPushButton('display')
         Button3.clicked.connect(self.show_new_window)
 
@@ -76,8 +79,13 @@ class PyQtLayout(QWidget):
             self.disp_status = None 
 
     def start_op(self):
-        self.threadpool.start(worker)
-        
+        global end_thread
+        end_thread = False
+        worker.run()
+
+   # def end_op():
+      #  global end_thread
+       # end_thread = True
 
 def start_gui():
     app = QApplication(sys.argv)

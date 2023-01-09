@@ -41,3 +41,12 @@ Dec 19:
     Todo:
         - sort keylogged data
         - make gui look so much nicer
+
+Dec 22:
+    Worked on fixing multithreading bug with listener and gui code
+
+    Todo:
+        - fix multithreading
+        - make gui look nicer
+        - sort keylogged data into full words
+        

