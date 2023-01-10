@@ -1,21 +1,16 @@
 import sys
 import listener as ls
 from PyQt6.QtWidgets import *
-from threading import *
-from PyQt6.QtCore import *
+import threading
+import globals
 
 sys.argv += ['-platform', 'windows:darkmode=2']
 
-global end_thread
-end_thread = False
-
-class Worker(QRunnable):
-    def run(self):
-        ls.start_listener()
+global thread_running
+thread_running = False
     
-worker = Worker()
-thread = QThread
-worker.moveToThread(thread)
+def threadFunct():
+     ls.start_listener()
 
 class DisplayWindow(QWidget):
     def __init__(self):
@@ -36,7 +31,6 @@ class DisplayWindow(QWidget):
         else:
             self.text_edit()  # Close window.
             self.text_edit = None
-        
      
 
         self.setLayout(layout)
@@ -45,17 +39,20 @@ class PyQtLayout(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.threadpool = QThreadPool()
-        print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
         self.disp_status = None
-
+        #self.worker = Worker()
+        #self.t = QThread()
+        #self.worker.moveToThread(self.t)
         self.UI()
- 
+        #self.t.start()
+        self.listener_thread = threading.Thread(target=threadFunct, args=())
+        
+
     def UI(self):
         Button1 = QPushButton('start')
         Button1.clicked.connect(self.start_op)
         Button2 = QPushButton('stop')
-        #Button2.clicked.connect(print("2"))
+        Button2.clicked.connect(self.end_op)
         Button3 = QPushButton('display')
         Button3.clicked.connect(self.show_new_window)
 
@@ -79,13 +76,13 @@ class PyQtLayout(QWidget):
             self.disp_status = None 
 
     def start_op(self):
-        global end_thread
-        end_thread = False
-        worker.run()
+        globals.end_thread = False
+        if thread_running == False:
+            thread_running = True
+            self.listener_thread.start()
 
-   # def end_op():
-      #  global end_thread
-       # end_thread = True
+    def end_op(self):
+        globals.end_thread = True
 
 def start_gui():
     app = QApplication(sys.argv)
@@ -93,3 +90,8 @@ def start_gui():
     sys.exit(app.exec())
 
 start_gui()
+
+shawn 
+haliday
+zeren
+neykov

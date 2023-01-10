@@ -49,4 +49,12 @@ Dec 22:
         - fix multithreading
         - make gui look nicer
         - sort keylogged data into full words
-        
+
+Jan 09:
+    Worked on fixing multithreading, moved from a QThreadPool to a QThread design
+    still need to figure out how to pause and resume the thread
+
+    Todo:
+        - Add pause and resume functionaliy to thread
+        - make gui look nicer
+        - fix that the keylogger only adds one key per time stamp. especially if its the same key in the same millisencond. Perhaps by sleeping functionaliy
