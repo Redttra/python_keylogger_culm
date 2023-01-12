@@ -58,3 +58,14 @@ Jan 09:
         - Add pause and resume functionaliy to thread
         - make gui look nicer
         - fix that the keylogger only adds one key per time stamp. especially if its the same key in the same millisencond. Perhaps by sleeping functionaliy
+
+Jan 10:
+    Worked on fixing multithreading more, moved from Qthread to pythons in built threading module
+
+    Todo:
+        - Add pause and resume functionaliy to thread
+        - make gui look nicer
+        - fix that keylogger adds multiple keys per same time stamp        
+
+Jan 12:
+    

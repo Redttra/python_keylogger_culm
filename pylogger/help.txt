@@ -1,0 +1,11 @@
+Welcome to pylogger, a fully functional python keylogger!
+
+To start the keyboard listener click on the "start" button
+
+To pause the keylogger simply click on the "stop" button,
+when you are ready to continue logging simply click on the
+"start" button again
+
+To find your logged data you can click on the "display log" button 
+Or you can find 'keylog.txt' file in this programs folder
+
