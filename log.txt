@@ -68,4 +68,12 @@ Jan 10:
         - fix that keylogger adds multiple keys per same time stamp        
 
 Jan 12:
-    
+    Added Help button
+    Todo:
+        - Whatever to feedback says
+
+Jan 19:
+    Fixed display log button not opening right log file and creating a new one
+
+Jan 20:
+    Added substantial commenting to the code
